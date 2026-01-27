@@ -245,8 +245,3 @@ If you found this useful:
 - 🔄 Share it with the community
 - 📧 Contribute improvements via pull requests
 - 🐛 Report issues and suggestions
-
----
-
-## 📄 License
-This project is open source and available under the MIT License.

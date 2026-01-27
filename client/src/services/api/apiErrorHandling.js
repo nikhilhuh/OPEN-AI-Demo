@@ -1,0 +1,26 @@
+import { isAxiosError } from "axios";
+
+export const apiErrorHandler = (err) => {
+  if (isAxiosError(err)) {
+    if (err.code === "ECONNABORTED") {
+      return { success: false, message: "Server is not responding, wait before trying again" };
+    } else if (err.response) {
+      const { status, data } = err.response;
+      const message = data?.message || "Something went wrong";
+
+      return {
+        success: false,
+        message,
+        status,
+      };
+    } else if (err.request) {
+      return { success: false, message: "Server is not responding, wait before trying again" };
+    }
+  }
+
+  if (err instanceof Error) {
+    return { success: false, message: err.message || "Unexpected error occurred" };
+  }
+
+  return { success: false, message: "An unknown error occurred" };
+};
